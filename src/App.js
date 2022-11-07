@@ -1,24 +1,35 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import { useState, useEffect } from "react";
+import axios from "axios";
+import logo from "./img/Deliveroo-Logo.png";
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+  const [counter, setCounter] = useState(0);
+  const [data, setData] = useState();
+  const [isLoading, setIsLoading] = useState(true);
+  useEffect(() => {
+    const fetchData = async () => {
+      const response = await axios.get(
+        "https://site--deliveroo-backend--c7br8w6v87r6.code.run/"
+      );
+      setData(response.data);
+      setIsLoading(false);
+    };
+    fetchData();
+  }, []);
+  return isLoading ? (
+    <p>Loading ...</p>
+  ) : (
+    <body>
+      <div>
+        <header className="Header">
+          <div className="topBar">
+            <img className="logo" src={logo} alt="delivroo logo" />
+          </div>
+          <div className="RestaurantInfos"></div>
+        </header>
+      </div>
+    </body>
   );
 }
 
