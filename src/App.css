@@ -1,7 +1,7 @@
 * {
   box-sizing: border-box;
 }
-body {
+.body {
   margin: 0 auto;
   font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
     Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
@@ -240,8 +240,8 @@ h2 {
   margin: 10px;
   border-radius: 5px;
   padding: 1rem;
-  /* background: #00cdbd;
-  color: #fff; */
+  background: #00cdbd;
+  color: #fff;
   border: none;
   font-weight: 700;
   font-size: 1rem;
@@ -285,4 +285,69 @@ button {
   color: #868a8a;
   text-align: center;
   padding: 3rem 0;
+}
+
+.Cart-minus-cart-container {
+}
+
+.Cart--items {
+  border-bottom: 1px solid #d1d7d7;
+  margin: 0 10px;
+  max-height: calc(100vh - 300px);
+  overflow: auto;
+}
+
+.Cart--line {
+  display: flex;
+  align-items: flex-start;
+  padding: 1rem 0;
+}
+
+.Cart--Counter {
+  display: flex;
+  align-items: center;
+  margin-right: 10px;
+  color: #808484;
+}
+
+.operation {
+  width: 20px;
+  height: 20px;
+  color: rgb(0, 206, 189);
+  cursor: pointer;
+  fill: none;
+  stroke: currentcolor;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  overflow: hidden;
+}
+
+.Cart--item-name {
+  flex: 1 1;
+}
+
+.Cart--amount {
+  width: 85px;
+  text-align: right;
+}
+
+.Cart--results {
+  margin: 0 10px;
+  padding: 10px 0;
+  border-bottom: 1px solid #d1d7d7;
+}
+.Cart--result-line {
+  display: flex;
+  align-items: center;
+  padding: 0.5rem 0;
+}
+
+.Cart--result-name {
+  flex: 1 1;
+}
+
+.Cart--amount {
+  width: 85px;
+  text-align: right;
 }

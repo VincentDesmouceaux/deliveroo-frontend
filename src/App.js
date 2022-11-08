@@ -7,11 +7,7 @@ function App() {
   const [data, setData] = useState();
   const [isLoading, setIsLoading] = useState(true);
   const [basket, setBasket] = useState([]);
-  const addMeal = () => {
-    const newBasket = [...basket];
-    newBasket.push(0);
-    setBasket(newBasket);
-  };
+
   useEffect(() => {
     const fetchData = async () => {
       const response = await axios.get(
@@ -25,7 +21,7 @@ function App() {
   return isLoading ? (
     <p>Loading ...</p>
   ) : (
-    <body>
+    <div className="body">
       <div>
         <header className="Header">
           <div className="topBar">
@@ -62,7 +58,15 @@ function App() {
                             <div
                               className="menuitem"
                               key={meal.id}
-                              onClick={addMeal}
+                              onClick={() => {
+                                const newBasket = [...basket];
+                                newBasket.push({
+                                  name: meal.title,
+                                  prix: meal.price,
+                                  counter: 1,
+                                });
+                                setBasket(newBasket);
+                              }}
                             >
                               <div className="menuitemsCard">
                                 <div className="menuitemstext">
@@ -101,13 +105,41 @@ function App() {
                 <button className="Cart--Validate Cart--disabled">
                   Valider mon panier
                 </button>
-                <div className="Cart-empty">Votre panier est vide</div>
+                <div className="Cart-minus-cart-container">
+                  {basket.map((elem, index) => {
+                    return (
+                      <div className="Cart--items" key={index}>
+                        <div className="Cart--line">
+                          <div className="Cart--Counter">
+                            <span className="operation">-</span>
+                            <span>{elem.counter}</span>
+                            <span onClick={const handleClickPlus = (index) => {
+    const newCounters = [...counters];
+    newCounters[index]++;
+    setCounters(newCounters);
+   } className="operation">+</span>
+                          </div>
+                          <span className="Cart--item-name">{elem.name}</span>
+                          <span className="Cart--amount">{elem.prix}</span>
+                        </div>
+                        <div className="Cart--results">
+                          <div className="Cart--result-line">
+                            <span className="Cart--result-name">
+                              Sous-total
+                            </span>
+                            <span className="Cart--amount">resulat</span>
+                          </div>
+                        </div>
+                      </div>
+                    );
+                  })}
+                </div>
               </div>
             </div>
           </div>
         </div>
       </div>
-    </body>
+    </div>
   );
 }
 
