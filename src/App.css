@@ -1,4 +1,7 @@
-.body {
+* {
+  box-sizing: border-box;
+}
+body {
   margin: 0 auto;
   font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
     Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
@@ -6,8 +9,12 @@
   color: #2e3333;
 }
 
-* {
-  box-sizing: border-box;
+.topbarcenter {
+  margin: 0 auto;
+  width: 96vw;
+  max-width: 1200px;
+  display: flex;
+  flex-direction: row;
 }
 
 div {
@@ -22,10 +29,260 @@ header {
   display: block;
 }
 
-.TopBar {
+.topBar {
   height: 60px;
   border-bottom: 1px solid #e9ebeb;
 }
 .logo {
-  height: 100px;
+  height: 70px;
+}
+
+.Content--center {
+  margin: 0 auto;
+  width: 96vw;
+  max-width: 1200px;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+}
+
+.Restaurantimg {
+  width: 350px;
+  border-radius: 5px;
+  overflow: hidden;
+  background: #f3f5f5;
+}
+
+.RestaurantInfos--center {
+  padding: 30px 0;
+  align-items: flex-start;
+  margin: 0 auto;
+  width: 96vw;
+  max-width: 1200px;
+  display: flex;
+  flex-direction: row;
+}
+.menuImg {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+}
+
+.menu {
+  flex: 1 1;
+  margin-right: 30px;
+  margin-bottom: -25px;
+}
+.menuitemitem {
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+  flex-wrap: wrap;
+  margin: 0 -10px;
+}
+.menuitem {
+  width: 50%;
+  min-width: 300px;
+  padding: 0 10px 25px;
+}
+.menuitemprice {
+  color: #808484;
+  font-size: 1.1rem;
+}
+
+.menuitempop {
+  color: #ff8000;
+  font-size: 0.8rem;
+  margin-left: 1rem;
+  font-weight: 800;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+.menuitemsCard {
+  border-radius: 5px;
+  height: 160px;
+  background: #fff;
+  padding: 15px;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  cursor: pointer;
+  transition-duration: 0.3s;
+}
+
+.menuitemstext {
+  flex: 1 1;
+  margin-right: 15px;
+}
+.menuitemstext h3 {
+  font-weight: 400;
+  margin: 0 0 0.5rem;
+}
+
+h3 {
+  display: block;
+  font-size: 1.17em;
+  margin-block-start: 1em;
+  margin-block-end: 1em;
+  margin-inline-start: 0px;
+  margin-inline-end: 0px;
+  font-weight: bold;
+}
+
+.menuitemstext p {
+  font-size: 0.9rem;
+  color: #808484;
+  line-height: 1.3rem;
+  height: 2.6rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin: 0 0 1rem;
+  font-size: 0.9rem;
+  color: #808484;
+  line-height: 1.3rem;
+  height: 2.6rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin: 0 0 1rem;
+}
+
+.restaurantInfostext {
+  flex: 1 1;
+  margin-right: 30px;
+}
+
+.restaurantInfostext h1 {
+  font-size: 2rem;
+  margin-top: 0.6rem;
+  margin-bottom: 2rem;
+}
+
+h1 {
+  display: block;
+  font-size: 2em;
+  margin-block-start: 0.67em;
+  margin-block-end: 0.67em;
+  margin-inline-start: 0px;
+  margin-inline-end: 0px;
+  font-weight: bold;
+}
+
+.restaurantInfostext p {
+  color: #868a8a;
+  font-size: 1.2rem;
+  line-height: 1.5;
+}
+
+p {
+  display: block;
+  margin-block-start: 1em;
+  margin-block-end: 1em;
+  margin-inline-start: 0px;
+  margin-inline-end: 0px;
+}
+.menuitempic {
+  height: 130px;
+  width: 130px;
+  border-radius: 5px;
+  overflow: hidden;
+  position: relative;
+}
+
+.menuInfo {
+  display: flex;
+  align-items: center;
+}
+
+h2 {
+  display: block;
+  font-size: 1.5em;
+  margin-block-start: 0.83em;
+  margin-block-end: 0.83em;
+  margin-inline-start: 0px;
+  margin-inline-end: 0px;
+  font-weight: bold;
+}
+.menuitempop {
+  color: #ff8000;
+  font-size: 0.8rem;
+  margin-left: 1rem;
+  font-weight: 800;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.Cart {
+  width: 350px;
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+}
+
+.Cart--Card {
+  box-shadow: 0 22px 24px 0 rgb(46 51 51 / 7%);
+  background: #fff;
+  border-radius: 4px;
+  align-self: flex-start;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  margin: 30px 0;
+}
+.Cart--disabled {
+  cursor: not-allowed;
+  background: #bac3c3;
+  color: #8b9a9b;
+}
+.Cart--Validate {
+  display: block;
+  margin: 10px;
+  border-radius: 5px;
+  padding: 1rem;
+  /* background: #00cdbd;
+  color: #fff; */
+  border: none;
+  font-weight: 700;
+  font-size: 1rem;
+}
+
+button {
+  appearance: auto;
+  writing-mode: horizontal-tb !important;
+  font-style: ;
+  font-variant-ligatures: ;
+  font-variant-caps: ;
+  font-variant-numeric: ;
+  font-variant-east-asian: ;
+  font-weight: ;
+  font-stretch: ;
+  font-size: ;
+  font-family: ;
+  text-rendering: auto;
+  color: buttontext;
+  letter-spacing: normal;
+  word-spacing: normal;
+  line-height: normal;
+  text-transform: none;
+  text-indent: 0px;
+  text-shadow: none;
+  display: inline-block;
+  text-align: center;
+  align-items: flex-start;
+  cursor: default;
+  box-sizing: border-box;
+  background-color: buttonface;
+  margin: 0em;
+  padding: 1px 6px;
+  border-width: 2px;
+  border-style: outset;
+  border-color: buttonborder;
+  border-image: initial;
+}
+
+.Cart-empty {
+  color: #868a8a;
+  text-align: center;
+  padding: 3rem 0;
 }
