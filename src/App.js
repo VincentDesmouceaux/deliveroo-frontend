@@ -6,7 +6,12 @@ import logo from "./img/Deliveroo-Logo.png";
 function App() {
   const [data, setData] = useState();
   const [isLoading, setIsLoading] = useState(true);
-  // const [basket, setBasket] = useState [];
+  const [basket, setBasket] = useState([]);
+  const addMeal = () => {
+    const newBasket = [...basket];
+    newBasket.push(0);
+    setBasket(newBasket);
+  };
   useEffect(() => {
     const fetchData = async () => {
       const response = await axios.get(
@@ -57,9 +62,7 @@ function App() {
                             <div
                               className="menuitem"
                               key={meal.id}
-                              onClick={() => {
-                                console.log(meal);
-                              }}
+                              onClick={addMeal}
                             >
                               <div className="menuitemsCard">
                                 <div className="menuitemstext">
