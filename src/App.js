@@ -102,9 +102,14 @@ function App() {
             </div>
             <div className="Cart">
               <div className="Cart--Card">
-                <button className="Cart--Validate Cart--disabled">
+                <button
+                  className={
+                    basket.length === 0 ? "Cart--disabled" : "Cart--Validate"
+                  }
+                >
                   Valider mon panier
                 </button>
+                <div>{basket.length ? null : <p>Votre panier est vide</p>}</div>
                 <div className="Cart-minus-cart-container">
                   {basket.map((elem, index) => {
                     return (
@@ -113,26 +118,29 @@ function App() {
                           <div className="Cart--Counter">
                             <span className="operation">-</span>
                             <span>{elem.counter}</span>
-                            <span onClick={const handleClickPlus = (index) => {
-    const newCounters = [...counters];
-    newCounters[index]++;
-    setCounters(newCounters);
-   } className="operation">+</span>
+                            <span
+                              className="operation"
+                              onClick={(index) => {
+                                const newBasket = [...basket];
+                                newBasket[index]++;
+                                // set(newCounter);
+                              }}
+                            >
+                              +
+                            </span>
                           </div>
                           <span className="Cart--item-name">{elem.name}</span>
                           <span className="Cart--amount">{elem.prix}</span>
                         </div>
-                        <div className="Cart--results">
-                          <div className="Cart--result-line">
-                            <span className="Cart--result-name">
-                              Sous-total
-                            </span>
-                            <span className="Cart--amount">resulat</span>
-                          </div>
-                        </div>
                       </div>
                     );
                   })}
+                  <div className="Cart--results">
+                    <div className="Cart--result-line">
+                      <span className="Cart--result-name">Sous-total</span>
+                      <span className="Cart--amount">resulat</span>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
