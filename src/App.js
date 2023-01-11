@@ -160,8 +160,12 @@ function App() {
                   })}
                   <div className="Cart--results">
                     <div className="Cart--result-line">
-                      <span className="Cart--result-name">Sous-total</span>
-                      <span className="Cart--amount">resulat</span>
+                      {basket.length ? (
+                        <span className="Cart--result-name">Sous-total</span>
+                      ) : null}
+                      {basket.length ? (
+                        <span className="Cart--amount">resulat</span>
+                      ) : null}
                     </div>
                   </div>
                 </div>
