@@ -109,7 +109,9 @@ function App() {
                 >
                   Valider mon panier
                 </button>
-                <div>{basket.length ? null : <p>Votre panier est vide</p>}</div>
+                <div className="Cart--empty">
+                  {basket.length ? null : <p>Votre panier est vide</p>}
+                </div>
                 <div className="Cart-minus-cart-container">
                   {basket.map((elem, index) => {
                     return (
