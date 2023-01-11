@@ -2,6 +2,15 @@ import "./App.css";
 import { useState, useEffect } from "react";
 import axios from "axios";
 import logo from "./img/Deliveroo-Logo.png";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { library } from "@fortawesome/fontawesome-svg-core";
+import {
+  faEnvelope,
+  faKey,
+  faListAlt,
+  faStar,
+} from "@fortawesome/free-solid-svg-icons";
+library.add(faEnvelope, faKey, faListAlt, faStar);
 
 function App() {
   const [data, setData] = useState();
@@ -47,57 +56,69 @@ function App() {
           <div className="Content--center">
             <div className="menu">
               {data.categories.map((elem, index) => {
-                return (
-                  <div key={index}>
-                    <div className="menuitems">
-                      <h2>{elem.name}</h2>
+                if (elem.meals.length !== 0) {
+                  return (
+                    <div key={index}>
+                      <div className="menuitems">
+                        <h2>{elem.name}</h2>
 
-                      <div className="menuitemitem">
-                        {elem.meals.map((meal, index) => {
-                          return (
-                            <div
-                              className="menuitem"
-                              key={meal.id}
-                              onClick={() => {
-                                const newBasket = [...basket];
-                                newBasket.push({
-                                  name: meal.title,
-                                  prix: meal.price,
-                                  counter: 1,
-                                });
-                                setBasket(newBasket);
-                              }}
-                            >
-                              <div className="menuitemsCard">
-                                <div className="menuitemstext">
-                                  <h3> {meal.title}</h3>
-                                  <p>{meal.description}</p>
-                                  <div className="menuInfo">
-                                    <span className="menuitemprice">
-                                      {meal.price}
-                                    </span>
-                                    {meal.popular && (
-                                      <span className="menuitempop">
-                                        populaire
+                        <div className="menuitemitem">
+                          {elem.meals.map((meal, index) => {
+                            return (
+                              <div
+                                className="menuitem"
+                                key={meal.id}
+                                onClick={() => {
+                                  const newBasket = [...basket];
+                                  newBasket.push({
+                                    name: meal.title,
+                                    prix: meal.price,
+                                    counter: 1,
+                                  });
+                                  setBasket(newBasket);
+                                }}
+                              >
+                                <div className="menuitemsCard">
+                                  <div className="menuitemstext">
+                                    <h3> {meal.title}</h3>
+                                    <p>{meal.description}</p>
+                                    <div className="menuInfo">
+                                      <span className="menuitemprice">
+                                        {meal.price} €
                                       </span>
+
+                                      {meal.popular && (
+                                        <span className="menuitempop">
+                                          <FontAwesomeIcon icon="star" />
+                                        </span>
+                                      )}
+                                      {meal.popular && (
+                                        <span className="menuitempop">
+                                          populaire
+                                        </span>
+                                      )}
+                                    </div>
+                                  </div>
+                                  <div className="menuitempic">
+                                    {meal.picture && (
+                                      <img
+                                        className="menuImg"
+                                        src={meal.picture}
+                                        alt="pics"
+                                      />
                                     )}
                                   </div>
                                 </div>
-                                <div className="menuitempic">
-                                  <img
-                                    className="menuImg"
-                                    src={meal.picture}
-                                    alt="pics"
-                                  />
-                                </div>
                               </div>
-                            </div>
-                          );
-                        })}
+                            );
+                          })}
+                        </div>
                       </div>
                     </div>
-                  </div>
-                );
+                  );
+                } else {
+                  return null;
+                }
               })}
             </div>
             <div className="Cart">
