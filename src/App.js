@@ -19,14 +19,45 @@ function App() {
 
   useEffect(() => {
     const fetchData = async () => {
-      const response = await axios.get(
-        "https://site--deliveroo-backend--c7br8w6v87r6.code.run/"
-      );
-      setData(response.data);
-      setIsLoading(false);
+      try {
+        const response = await axios.get(
+          "https://site--deliveroo-backend--c7br8w6v87r6.code.run/"
+        );
+        setData(response.data);
+        setIsLoading(false);
+      } catch (error) {
+        console.log(error.message);
+      }
     };
     fetchData();
   }, []);
+
+  const handleAddToBasket = (meal) => {
+    const newBasket = [...basket];
+    const mealPresent = newBasket.find((elem) => elem.id === meal.id);
+
+    if (mealPresent) {
+      mealPresent.quantity++;
+    } else {
+      newBasket.push({ ...meal, quantity: 1 });
+    }
+    setBasket(newBasket);
+  };
+
+  const handleRemoveToBasket = (meal) => {
+    const newBasket = [...basket];
+    const mealPresent = newBasket.find((elem) => elem.id === meal.id);
+
+    if (mealPresent.quantity === 1) {
+      const index = newBasket.indexOf(mealPresent);
+      newBasket.splice(index, 1);
+    } else {
+      mealPresent.quantity--;
+    }
+  };
+
+  let total = 0;
+
   return isLoading ? (
     <p>Loading ...</p>
   ) : (
