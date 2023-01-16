@@ -331,6 +331,11 @@ button {
   color: #808484;
 }
 
+.Cart--counter span {
+  min-width: 1rem;
+  text-align: center;
+}
+
 .operation {
   width: 20px;
   height: 20px;

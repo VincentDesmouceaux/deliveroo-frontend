@@ -54,9 +54,12 @@ function App() {
     } else {
       mealPresent.quantity--;
     }
+    setBasket(newBasket);
   };
 
   let total = 0;
+
+  console.log(total);
 
   return isLoading ? (
     <p>Loading ...</p>
@@ -78,7 +81,7 @@ function App() {
               <img
                 className="Restaurantimg"
                 src="https://f.roocdn.com/images/menus/17697/header-image.jpg"
-                alt="main photo"
+                alt="main"
               />
             </div>
           </div>
@@ -100,13 +103,7 @@ function App() {
                                 className="menuitem"
                                 key={meal.id}
                                 onClick={() => {
-                                  const newBasket = [...basket];
-                                  newBasket.push({
-                                    name: meal.title,
-                                    prix: meal.price,
-                                    counter: 1,
-                                  });
-                                  setBasket(newBasket);
+                                  handleAddToBasket(meal);
                                 }}
                               >
                                 <div className="menuitemsCard">
@@ -165,26 +162,35 @@ function App() {
                   {basket.length ? null : <p>Votre panier est vide</p>}
                 </div>
                 <div className="Cart-minus-cart-container">
-                  {basket.map((elem, index) => {
+                  {basket.map((meal) => {
+                    total += meal.price * meal.quantity;
+
                     return (
-                      <div className="Cart--items" key={index}>
+                      <div className="Cart--items" key={meal.id}>
                         <div className="Cart--line">
                           <div className="Cart--Counter">
-                            <span className="operation">-</span>
-                            <span>{elem.counter}</span>
                             <span
                               className="operation"
-                              onClick={(index) => {
-                                const newBasket = [...basket];
-                                newBasket[index]++;
-                                // set(newCounter);
+                              onClick={() => {
+                                handleRemoveToBasket(meal);
+                              }}
+                            >
+                              -
+                            </span>
+                            <span>{meal.quantity}</span>
+                            <span
+                              className="operation"
+                              onClick={() => {
+                                handleAddToBasket(meal);
                               }}
                             >
                               +
                             </span>
                           </div>
-                          <span className="Cart--item-name">{elem.name}</span>
-                          <span className="Cart--amount">{elem.prix}</span>
+                          <span className="Cart--item-name">{meal.title}</span>
+                          <span className="Cart--amount">
+                            {(meal.price * meal.quantity).toFixed(2)} €
+                          </span>
                         </div>
                       </div>
                     );
@@ -195,7 +201,7 @@ function App() {
                         <span className="Cart--result-name">Sous-total</span>
                       ) : null}
                       {basket.length ? (
-                        <span className="Cart--amount">resulat</span>
+                        <span className="Cart--amount">{total.toFixed(2)}</span>
                       ) : null}
                     </div>
                   </div>
