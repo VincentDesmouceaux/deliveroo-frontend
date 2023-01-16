@@ -1,4 +1,5 @@
 @import url("./assets/styles/font.css");
+@import url("./assets/styles/style.css");
 
 * {
   box-sizing: border-box;
@@ -376,4 +377,17 @@ button {
 .Cart--amount {
   width: 85px;
   text-align: right;
+}
+
+.Cart--total {
+  display: flex;
+  align-items: flex-start;
+  padding: 1.3rem 0;
+  margin: 0 10px;
+  font-weight: 600;
+  font-size: 1.2rem;
+}
+
+.Cart--result-name {
+  flex: 1 1;
 }

@@ -158,9 +158,11 @@ function App() {
                 >
                   Valider mon panier
                 </button>
-                <div className="Cart--empty">
-                  {basket.length ? null : <p>Votre panier est vide</p>}
-                </div>
+                {basket.length ? null : (
+                  <div className="Cart--empty">
+                    {basket.length ? null : <p>Votre panier est vide</p>}
+                  </div>
+                )}
                 <div className="Cart-minus-cart-container">
                   {basket.map((meal) => {
                     total += meal.price * meal.quantity;
@@ -187,6 +189,7 @@ function App() {
                               +
                             </span>
                           </div>
+
                           <span className="Cart--item-name">{meal.title}</span>
                           <span className="Cart--amount">
                             {(meal.price * meal.quantity).toFixed(2)} €
@@ -195,16 +198,32 @@ function App() {
                       </div>
                     );
                   })}
-                  <div className="Cart--results">
-                    <div className="Cart--result-line">
-                      {basket.length ? (
+                  {basket.length ? (
+                    <div className="Cart--results">
+                      <div className="Cart--result-line">
                         <span className="Cart--result-name">Sous-total</span>
-                      ) : null}
-                      {basket.length ? (
-                        <span className="Cart--amount">{total.toFixed(2)}</span>
-                      ) : null}
+
+                        <span className="Cart--amount">
+                          {total.toFixed(2)} €
+                        </span>
+                      </div>
+                      <div className="Cart--result-line">
+                        <span className="Cart--result-name">
+                          Frais de livraison
+                        </span>
+
+                        <span className="Cart--amount">2.50 €</span>
+                      </div>
                     </div>
-                  </div>
+                  ) : null}
+                  {basket.length ? (
+                    <div className="Cart--total">
+                      <span className="Cart--result-name">Total</span>
+                      <span className="Cart-amount">
+                        {(total + 2.5).toFixed(2)} €
+                      </span>
+                    </div>
+                  ) : null}
                 </div>
               </div>
             </div>
