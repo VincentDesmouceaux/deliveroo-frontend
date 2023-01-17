@@ -1,4 +1,6 @@
 import "./App.css";
+import PlusIcon from "./components/PlusIcon";
+import MinusIcon from "./components/MinusIcon";
 import { useState, useEffect } from "react";
 import axios from "axios";
 import logo from "./img/Deliveroo-Logo.png";
@@ -16,6 +18,7 @@ function App() {
   const [data, setData] = useState();
   const [isLoading, setIsLoading] = useState(true);
   const [basket, setBasket] = useState([]);
+  const [basketVisible, setBasketVisible] = useState(false);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -51,6 +54,10 @@ function App() {
     if (mealPresent.quantity === 1) {
       const index = newBasket.indexOf(mealPresent);
       newBasket.splice(index, 1);
+
+      if (newBasket.length === 0) {
+        setBasketVisible(false);
+      }
     } else {
       mealPresent.quantity--;
     }
@@ -177,7 +184,7 @@ function App() {
                                 handleRemoveToBasket(meal);
                               }}
                             >
-                              -
+                              <MinusIcon size={20} />
                             </span>
                             <span>{meal.quantity}</span>
                             <span
@@ -186,7 +193,7 @@ function App() {
                                 handleAddToBasket(meal);
                               }}
                             >
-                              +
+                              <PlusIcon size={20} />
                             </span>
                           </div>
 
@@ -228,6 +235,27 @@ function App() {
               </div>
             </div>
           </div>
+        </div>
+        <div className="Cart-minus-container">
+          {basketVisible && basket.length > 0()}
+          <button
+            onClick={() => {
+              basket.length > 0 && setBasketVisible(true);
+            }}
+            className={
+              basket.length === 0
+                ? "Cart-minus-button-disabled"
+                : "Cart-minus-button"
+            }
+            style={{
+              justifyContent:
+                basketVisible || basket.length === 0
+                  ? "center"
+                  : "space-between",
+            }}
+          >
+            <span>Voir le panier</span>
+          </button>
         </div>
       </div>
     </div>
