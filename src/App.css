@@ -485,3 +485,40 @@ button {
     margin-right: 0;
   }
 }
+
+@media (max-width: 1124px) {
+  .menuitem {
+    width: 100%;
+  }
+}
+
+@media (max-width: 1124px) {
+  .menuitemitem {
+    flex-wrap: nowrap;
+    flex-direction: column;
+  }
+}
+
+@media (max-width: 885px) {
+  .RestaurantInfos--center {
+    flex-direction: column-reverse;
+    padding: 0;
+    margin: 0;
+    width: 100%;
+  }
+  .Restaurantimg {
+    height: 200px;
+    width: 100%;
+    object-fit: cover;
+    border-radius: 0;
+  }
+  .RestaurantInfos--texts {
+    padding: 30px;
+  }
+  h1 {
+    font-size: 1.5rem !important;
+  }
+  p {
+    font-size: 1rem !important;
+  }
+}

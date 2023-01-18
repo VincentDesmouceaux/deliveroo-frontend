@@ -66,6 +66,21 @@ function App() {
 
   let total = 0;
 
+  const numberOfProducts = () => {
+    let totalOfProducts = 0;
+    basket.forEach((elem) => (totalOfProducts += elem.quantity));
+    return totalOfProducts;
+  };
+
+  const deliveryFees = 2.5;
+
+  let subTotal = 0;
+  basket.forEach((cartItem) => {
+    subTotal += cartItem.price * cartItem.quantity;
+  });
+
+  const total2 = subTotal + deliveryFees;
+
   console.log(total);
 
   return isLoading ? (
@@ -170,74 +185,143 @@ function App() {
                     {basket.length ? null : <p>Votre panier est vide</p>}
                   </div>
                 )}
-                <div className="Cart-minus-cart-container">
-                  {basket.map((meal) => {
-                    total += meal.price * meal.quantity;
 
-                    return (
-                      <div className="Cart--items" key={meal.id}>
-                        <div className="Cart--line">
-                          <div className="Cart--Counter">
-                            <span
-                              className="operation"
-                              onClick={() => {
-                                handleRemoveToBasket(meal);
-                              }}
-                            >
-                              <MinusIcon size={20} />
-                            </span>
-                            <span>{meal.quantity}</span>
-                            <span
-                              className="operation"
-                              onClick={() => {
-                                handleAddToBasket(meal);
-                              }}
-                            >
-                              <PlusIcon size={20} />
-                            </span>
-                          </div>
+                {basket.map((meal) => {
+                  total += meal.price * meal.quantity;
 
-                          <span className="Cart--item-name">{meal.title}</span>
-                          <span className="Cart--amount">
-                            {(meal.price * meal.quantity).toFixed(2)} €
+                  return (
+                    <div className="Cart--items" key={meal.id}>
+                      <div className="Cart--line">
+                        <div className="Cart--Counter">
+                          <span
+                            className="operation"
+                            onClick={() => {
+                              handleRemoveToBasket(meal);
+                            }}
+                          >
+                            <MinusIcon size={20} />
+                          </span>
+                          <span>{meal.quantity}</span>
+                          <span
+                            className="operation"
+                            onClick={() => {
+                              handleAddToBasket(meal);
+                            }}
+                          >
+                            <PlusIcon size={20} />
                           </span>
                         </div>
-                      </div>
-                    );
-                  })}
-                  {basket.length ? (
-                    <div className="Cart--results">
-                      <div className="Cart--result-line">
-                        <span className="Cart--result-name">Sous-total</span>
 
+                        <span className="Cart--item-name">{meal.title}</span>
                         <span className="Cart--amount">
-                          {total.toFixed(2)} €
+                          {(meal.price * meal.quantity).toFixed(2)} €
                         </span>
                       </div>
-                      <div className="Cart--result-line">
-                        <span className="Cart--result-name">
-                          Frais de livraison
-                        </span>
+                    </div>
+                  );
+                })}
+                {basket.length ? (
+                  <div className="Cart--results">
+                    <div className="Cart--result-line">
+                      <span className="Cart--result-name">Sous-total</span>
 
-                        <span className="Cart--amount">2.50 €</span>
-                      </div>
+                      <span className="Cart--amount">{total.toFixed(2)} €</span>
                     </div>
-                  ) : null}
-                  {basket.length ? (
-                    <div className="Cart--total">
-                      <span className="Cart--result-name">Total</span>
-                      <span className="Cart-amount">
-                        {(total + 2.5).toFixed(2)} €
+                    <div className="Cart--result-line">
+                      <span className="Cart--result-name">
+                        Frais de livraison
                       </span>
+
+                      <span className="Cart--amount">2.50 €</span>
                     </div>
-                  ) : null}
-                </div>
+                  </div>
+                ) : null}
+                {basket.length ? (
+                  <div className="Cart--total">
+                    <span className="Cart--result-name">Total</span>
+                    <span className="Cart-amount">
+                      {(total + 2.5).toFixed(2)} €
+                    </span>
+                  </div>
+                ) : null}
               </div>
             </div>
           </div>
         </div>
+
         <div className="Cart-minus-container">
-          {basketVisible && basket.length > 0()}
+          {basketVisible && basket.length > 0 && (
+            <div className="Cart-minus-cart-container">
+              {basket && (
+                <div
+                  onClick={() => setBasketVisible(false)}
+                  className="Cart-minus-close-cart-modal"
+                >
+                  X
+                </div>
+              )}
+
+              {basket.map((meal) => {
+                total += meal.price * meal.quantity;
+
+                return (
+                  <div className="Cart--items" key={meal.id}>
+                    <div className="Cart--line">
+                      <div className="Cart--Counter">
+                        <span
+                          className="operation"
+                          onClick={() => {
+                            handleRemoveToBasket(meal);
+                          }}
+                        >
+                          <MinusIcon size={20} />
+                        </span>
+                        <span>{meal.quantity}</span>
+                        <span
+                          className="operation"
+                          onClick={() => {
+                            handleAddToBasket(meal);
+                          }}
+                        >
+                          <PlusIcon size={20} />
+                        </span>
+                      </div>
+
+                      <span className="Cart--item-name">{meal.title}</span>
+                      <span className="Cart--amount">
+                        {(meal.price * meal.quantity).toFixed(2)} €
+                      </span>
+                    </div>
+                  </div>
+                );
+              })}
+              {basket.length ? (
+                <div className="Cart--results">
+                  <div className="Cart--result-line">
+                    <span className="Cart--result-name">Sous-total</span>
+
+                    <span className="Cart--amount">
+                      {subTotal.toFixed(2)} €
+                    </span>
+                  </div>
+                  <div className="Cart--result-line">
+                    <span className="Cart--result-name">
+                      Frais de livraison
+                    </span>
+
+                    <span className="Cart--amount">2.50 €</span>
+                  </div>
+                </div>
+              ) : null}
+              {basket.length ? (
+                <div className="Cart--total">
+                  <span className="Cart--result-name">Total</span>
+                  <span className="Cart-amount">{total2.toFixed(2)} €</span>
+                </div>
+              ) : null}
+            </div>
+          )}
+
           <button
             onClick={() => {
               basket.length > 0 && setBasketVisible(true);
@@ -254,7 +338,21 @@ function App() {
                   : "space-between",
             }}
           >
-            <span>Voir le panier</span>
+            {basketVisible ? (
+              <span>Valider mon panier</span>
+            ) : (
+              <>
+                {basket.length > 0 && (
+                  <span className="Cart-minus-number-of-products">
+                    {numberOfProducts()}
+                  </span>
+                )}
+                <span>Voir le panier</span>
+                {basket.length > 0 && (
+                  <span> {(total + 2.5).toFixed(2)} €</span>
+                )}
+              </>
+            )}
           </button>
         </div>
       </div>
