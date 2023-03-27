@@ -79,6 +79,8 @@ function App() {
     subTotal += cartItem.price * cartItem.quantity;
   });
 
+  // La méthode forEach() permet d'exécuter une fonction donnée sur chaque élément du tableau.
+
   const total2 = subTotal + deliveryFees;
 
   console.log(total);
